@@ -1,0 +1,15 @@
+
+djl:
+  # Define application type
+  application-type: QUESTION_ANSWER
+  # Define input data type, a model may accept multiple input data type
+  input-class: ai.djl.modality.nlp.qa.QAInput
+  # Define output data type, a model may generate different out put
+  output-class: java.lang.String
+  # Define filters that matches your application's need
+  model-filter:
+    backbone: bert
+    dataset: book_corpus_wiki_en_uncased
+  # Override default pre-processing/post-processing behavior
+#  arguments:
+#    threshold: 0.2
