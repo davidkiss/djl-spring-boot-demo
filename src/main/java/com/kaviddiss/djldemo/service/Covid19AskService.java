@@ -32,8 +32,8 @@ public class Covid19AskService {
     private Supplier<Predictor<QAInput, String>> predictorProvider;
 
     public String ask(String question) {
-        try {
-            return predictorProvider.get().predict(new QAInput(question, text, 384));
+        try (Predictor<QAInput, String> predictor = predictorProvider.get()){
+            return predictor.predict(new QAInput(question, text, 384));
         } catch (TranslateException e) {
             throw new RuntimeException("Failed to find answer", e);
         }
