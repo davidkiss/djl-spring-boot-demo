@@ -13,19 +13,12 @@ import java.util.function.Supplier;
 
 @Service
 public class Covid19AskService {
-    private static final String PARAGRAPH = "BBC Japan was a general entertainment Channel.\n"
-            + "Which operated between December 2004 and April 2006.\n"
-            + "It ceased operations after its Japanese distributor folded.";
 
     private String text;
 
     @PostConstruct
     public void init() throws Exception {
-        if (false) {
-            text = IOUtils.toString(getClass().getResourceAsStream("/covid19.wiki"), StandardCharsets.UTF_8);
-        } else {
-            text = PARAGRAPH;
-        }
+        text = IOUtils.toString(getClass().getResourceAsStream("/covid19.wiki"), StandardCharsets.UTF_8);
     }
 
     @Resource
