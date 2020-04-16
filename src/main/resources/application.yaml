@@ -9,7 +9,7 @@ djl:
   # Define filters that matches your application's need
   model-filter:
     backbone: bert
-    dataset: book_corpus_wiki_en_uncased
-  # Override default pre-processing/post-processing behavior
-#  arguments:
-#    threshold: 0.2
+#    dataset: book_corpus_wiki_en_uncased
+    dataset: SQuAD
+
+#models.xray.path: /path/to/saved_model.pb

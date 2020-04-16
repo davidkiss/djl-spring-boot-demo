@@ -1,6 +1,6 @@
 package com.kaviddiss.djldemo.web;
 
-import com.kaviddiss.djldemo.service.Covid19AskService;
+import com.kaviddiss.djldemo.service.Covid19Service;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,15 +13,21 @@ import java.util.Collections;
 @RestController
 @RequestMapping(value = "/api/v1", produces = MediaType.APPLICATION_JSON_VALUE)
 public class Covid19AskController {
-    private final Covid19AskService covid19AskService;
+    private final Covid19Service covid19Service;
 
-    public Covid19AskController(Covid19AskService covid19AskService) {
-        this.covid19AskService = covid19AskService;
+    public Covid19AskController(Covid19Service covid19Service) {
+        this.covid19Service = covid19Service;
     }
 
     @GetMapping("/covid19/ask")
     public ResponseEntity ask(@RequestParam("q") String question) {
-        String answer = covid19AskService.ask(question);
+        String answer = covid19Service.ask(question);
         return ResponseEntity.ok(Collections.singletonMap("answer", answer));
+    }
+
+    @GetMapping("/covid19/diagnose")
+    public ResponseEntity diagnose(@RequestParam String imageUrl) {
+        String answer = covid19Service.diagnose(imageUrl);
+        return ResponseEntity.ok(Collections.singletonMap("result", answer));
     }
 }
