@@ -1,0 +1,56 @@
+<html>
+<head>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <script src="/js/jquery.min.js"></script>
+</head>
+<body>
+<main>
+    <div class="container p-5">
+        <div class="row mb-5">
+            <h1 class="mx-auto">Covid-19 Q&A</h1>
+        </div>
+        <form id="askForm" class="mb-4">
+            <div class="input-group">
+                <input type="search" id="question" class="form-control" required
+                       placeholder="Enter a covid-19 question"
+                       aria-label="Question" aria-describedby="questionLbl">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-primary" id="button-ask">Submit</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="row mb-2">
+            <h5 class="ml-3">Answer</h5>
+        </div>
+
+        <div class="row ml-1">
+            <div id="spinner" class="text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div id="answer"></div>
+        </div>
+    </div>
+</main>
+<script>
+$( "#askForm" ).submit(function( event ) {
+  const question = $('#question').val();
+  $('#spinner').addClass('spinner-border');
+  $('#answer').html('');
+
+  $.ajax('/api/v1/covid19/ask?q='+question)
+  .done(data => {
+    $('#spinner').removeClass('spinner-border');
+    var answer = data.answer.substr(1, data.answer.length - 2);
+    answer = answer.replace(/ ,,/g, ',').replace(/, /g, ' ');
+    $('#answer').html(answer);
+  })
+  .fail(err => {
+    $('#spinner').removeClass('spinner-border');
+    $('#answer').html('Failed to get answer');
+  });
+  event.preventDefault();
+});
+</script>
+</body>
+</html>
