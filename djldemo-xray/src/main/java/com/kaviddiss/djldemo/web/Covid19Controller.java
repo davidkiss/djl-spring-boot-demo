@@ -12,10 +12,10 @@ import java.util.Collections;
 
 @RestController
 @RequestMapping(value = "/api/v1", produces = MediaType.APPLICATION_JSON_VALUE)
-public class Covid19AskController {
+public class Covid19Controller {
     private final Covid19Service covid19Service;
 
-    public Covid19AskController(Covid19Service covid19Service) {
+    public Covid19Controller(Covid19Service covid19Service) {
         this.covid19Service = covid19Service;
     }
 
