@@ -80,7 +80,7 @@
 
         <dependency>
             <groupId>ai.djl.spring</groupId>
-            <artifactId>djl-spring-boot-starter-mxnet-autoconfigure</artifactId>
+            <artifactId>djl-spring-boot-starter-autoconfigure</artifactId>
             <version>${djl-spring-boot-starter.version}</version>
         </dependency>
         <dependency>
